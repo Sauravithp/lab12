@@ -14,7 +14,7 @@ console.log(a);
     if(a.userName === 'admin' && a.password==='admin'){
         res.redirect('/product/add')
     }else{
-        throw Error("cannot login").status(500);
+        throw Error;
     }
 })
 

@@ -29,6 +29,12 @@ function clientErrorHandler(err, req, res, next){
     }
 }
 
+function errorHandler (err, req, res, next) {
+    res.status(500);
+    res.render('error',
+        { error: err })
+}
+
 app.use((err,
          req,res,next)=>{
     console.log(err);
@@ -36,4 +42,6 @@ app.use((err,
 });
 
 app.use(clientErrorHandler);
+app.use(errorHandler);
+
 app.listen(port,()=>console.log('Listening in port '+port));
