@@ -1,0 +1,22 @@
+{
+  "name": "lab12",
+  "version": "1.0.0",
+  "description": "express js",
+  "main": "app.js",
+  "scripts": {
+    "start": "set PORT=9999 NODE_ENV=Development nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sauravithp/lab12.git"
+  },
+  "author": "sauravi thapa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sauravithp/lab12/issues"
+  },
+  "homepage": "https://github.com/Sauravithp/lab12#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
