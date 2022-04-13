@@ -1,21 +1,38 @@
+const path=require('path');
 const express=require('express')
 const app=express();
 
 app.set('port', process.env.PORT || 3000);
 const port=app.get('port');
-
+console.log("*****"+port+"*****")
 //URL ENCODING
 app.use(express.urlencoded({extended: false}));
 
-let userRouter=require('./routes/userRouter')
-let productRouter=require('./routes/productRouter')
+app.use('/mycss',express.static(path.join(__dirname,'public','assets')));
 
-app.use(userRouter);
-app.use(productRouter);
+const userRouter=require(path.join(__dirname,'routes','userRouter.js'))
+const productRouter=require(path.join(__dirname,'routes','productRouter.js'))
+const loginRouter=require(path.join(__dirname,'routes','loginRouter.js'))
 
-app.get('/go-user', (req, res, next)=>{
-    console.log("go-user")
-    res.redirect('/user');
+app.use(loginRouter);
+app.use("/user",userRouter);
+app.use("/product",productRouter);
+
+function clientErrorHandler(err, req, res, next){
+    if(req.xhr){
+        res.status(500).send({
+            error: 'Something Went Wrong!'
+        })
+    }else{
+        next(err);
+    }
+}
+
+app.use((err,
+         req,res,next)=>{
+    console.log(err);
+    res.sendFile(path.join(__dirname,'view','error.html'))
 });
 
+app.use(clientErrorHandler);
 app.listen(port,()=>console.log('Listening in port '+port));

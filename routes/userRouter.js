@@ -1,20 +1,15 @@
-const express = require('express');
-const path = require('path');
+const express=require('express')
+const router=express.Router();
+const path=require('path');
 
-const options = {
-    "caseSensitive": false,
-    "strict": false
-}
-
-const router = express.Router(options);
-
-router.get('/user', (req, res,
-    next)=>{
-    console.log('User Request Query: ', req.query);
-    res.sendFile(path.join(__dirname, '..', 'views', 'users.html'));
+router.get('/add', (req, res,
+                  next)=>{
+    res.sendFile(path.join(__dirname,'..', 'view', 'addUser.html'));
 });
 
-module.exports.userRouter=router;
+router.post('/save',(req,res)=>{
+    console.log(req.body);
+    res.send("User has been saved!!!");
+});
 
-
-
+module.exports=router;

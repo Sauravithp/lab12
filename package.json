@@ -4,7 +4,7 @@
   "description": "express js",
   "main": "app.js",
   "scripts": {
-    "start": "set PORT=9999 NODE_ENV=Development nodemon app.js"
+    "start": "PORT=9999 NODE_ENV=Development nodemon app.js"
   },
   "repository": {
     "type": "git",
