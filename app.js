@@ -9,6 +9,7 @@ console.log("*****"+port+"*****")
 app.use(express.urlencoded({extended: false}));
 
 app.use('/mycss',express.static(path.join(__dirname,'public','assets')));
+app.use('/image',express.static(path.join(__dirname,'images')));
 
 const userRouter=require(path.join(__dirname,'routes','userRouter.js'))
 const productRouter=require(path.join(__dirname,'routes','productRouter.js'))
