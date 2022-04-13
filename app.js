@@ -25,20 +25,22 @@ function clientErrorHandler(err, req, res, next){
             error: 'Something Went Wrong!'
         })
     }else{
-        next(err);
+        console.log("clientErrorHandler");
+        next();
     }
 }
 
-function errorHandler (err, req, res, next) {
+function errorHandler (err, req, res) {
+    console.log("errorHandler");
     res.status(500);
-    res.render('error',
-        { error: err })
+    res.sendFile(path.join(__dirname,'view','error.html'))
 }
 
 app.use((err,
          req,res,next)=>{
     console.log(err);
-    res.sendFile(path.join(__dirname,'view','error.html'))
+    console.log("Inside error");
+    throw clientErrorHandler();
 });
 
 app.use(clientErrorHandler);
